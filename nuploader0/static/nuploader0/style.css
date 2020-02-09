@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+}
+
+body {
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  padding: 50px 0;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+section > h2 {
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  margin-bottom: 1em;
+}
+
+input[type=text], input[type=email], input[type=number],
+select, textarea {
+  width: 100%;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: solid 1px #ccc;
+  background-color: transparent;
+}
+
+button, a.button {
+  font-size: 14px;
+  -webkit-appearance: none;
+  padding: 4px 16px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: solid 1px transparent;
+  color: #333;
+  vertical-align: bottom;
+
+  box-sizing: border-box;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+button:hover, a.button:hover {
+  opacity: 0.5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+td, th {
+  padding: .75em;
+  border-bottom: solid 1px #ccc;
+  text-align: left;
+  font-weight: normal;
+}
+
+th {
+
+}
+
+
+
+
+.container {
+  padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0;
+    width: 960px;
+    margin: 0 auto;
+  }
+}
+
+
+.errorlist {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  color: red;
+}
+
+.inline-form {
+  margin-bottom: 75px;
+}
+
+.inline-form > p {
+  width: 100%;
+}
+
+.inline-form label {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .inline-form {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: start;
+    grid-column-gap: 20px;
+    column-gap: 20px;
+  }
+
+  .inline-form > p {
+    margin-bottom: 0;
+  }
+}
+
+#delete-form {
+  display: inline-block;
+}
+
+.danger {
+  background-color: red;
+  border-color: red;
+  color: #fff;
+}
+
+.primary {
+  background-color: blue !important;
+  border-color: blue !important;
+  color: #fff !important;
+}

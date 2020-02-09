@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="ナリトうぷろだ0">
+    <title>ナリトうぷろだ0</title>
+    <link rel="stylesheet" href="{% static 'nuploader0/style.css' %}">
+</head>
+<body>
+{% block content %}{% endblock %}
+
+<!-- Sweet Alert かっこいいダイアログ https://sweetalert.js.org/ -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    const buttons = document.getElementsByClassName('delete');
+    for (const button of buttons) {
+        button.addEventListener('click', e => {
+            const form = button.parentNode;
+            const tr = form.parentNode.parentNode;
+            const a = tr.querySelector('a.file-name');
+            swal({
+                title: "確認",
+                text: `${a.textContent}を削除します。よろしいですか。`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+        });
+    }
+
+</script>
+</body>
+</html>

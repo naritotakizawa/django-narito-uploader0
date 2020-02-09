@@ -1,0 +1,73 @@
+{% extends 'nuploader0/base.html' %}
+{% load nuploader0 %}
+{% block content %}
+    <main class="container">
+        {% if user.is_authenticated %}
+            <section>
+                <h2>ファイル・ディレクトリの追加</h2>
+                <form action="" method="POST" enctype="multipart/form-data" id="add-form" class="inline-form">
+                    {{ add_form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" name="type" value="add" class="danger">追加</button>
+                </form>
+            </section>
+        {% endif %}
+
+        <section>
+            <h2>ファイル・ディレクトリの一覧</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>ファイル・ディレクトリ名</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ composite.parent.pk }}</td>
+                    <td><a href="..">..</a></td>
+                    <td></td>
+                </tr>
+                {% for composite in composite_list %}
+                    <tr>
+                        <td>{{ composite.pk }}</td>
+                        <td><a class="file-name"
+                               href="{% create_composite_link request composite %}">{{ composite.get_display_name }}</a>
+                        </td>
+                        <td>
+                            {% if composite.zip_depth %}
+                                <a class="button primary" href="{% url 'nuploader0:zip' composite.pk %}">ZIPリンク</a>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                <form action="{% create_composite_link request composite %}" method="POST"
+                                      id="delete-form">
+                                    <button type="button" class="delete danger">削除</button>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="type" value="delete">
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </section>
+
+        {% if composite and user.is_authenticated %}
+            <section>
+                <h2>現在ディレクトリの更新</h2>
+                <form action="" method="POST" enctype="multipart/form-data" class="inline-form">
+                    {{ update_form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" name="type" value="update" class="danger">更新</button>
+                </form>
+            </section>
+
+        {% endif %}
+
+    </main>
+
+{% endblock %}
